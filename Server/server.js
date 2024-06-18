@@ -6,7 +6,7 @@ const databaseConfig = require("./config/database.config");
 const errorHandlerMiddleware = require("./error/error.middleware");
 const NotFoundError = require("./error/error.classes/NotFoundError");
 
-const constants = require("./constants");
+const constants = require("./utill/constants");
 require("dotenv").config();
 
 const app = express();
@@ -25,7 +25,7 @@ app.use((req, res, next) => {
 
 
   const start = async () => {
-    const port = process.env.PORT || 5001;
+    const port = process.env.PORT || 8081;
     try {
       await databaseConfig.connectDB();
       app.listen(port, () => {
