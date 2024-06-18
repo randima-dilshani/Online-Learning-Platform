@@ -15,6 +15,7 @@ const signToken = (user) => {
   const tokenBody = {
     id: user._id,
     email: user.email,
+    role: user.role,
   };
 
   // Sign the token with the payload, secret key, and expiration time

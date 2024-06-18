@@ -1,7 +1,12 @@
 const Auth = require("./auth.model");
 
 const save = async (auth, session) => {
+  try {
   return await auth.save({ session });
+} catch (error) {
+  console.error('Error saving auth:', error);
+  throw error;
+}
 };
 
 const findById = async (id, session) => {

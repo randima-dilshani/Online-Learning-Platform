@@ -7,7 +7,9 @@ const UnauthorizedError = require("../error/error.classes/UnauthorizedError");
 const NotFoundError = require("../error/error.classes/NotFoundError");
 
 const LoginUser = async (req, res) => {
+  try{
   const { email, password } = req.body;
+  console.log(`Login attempt: ${email}`);
   //validate email and password
   if (!email || !password) {
     throw new BadRequestError("Email and password are required!");
@@ -35,6 +37,8 @@ const LoginUser = async (req, res) => {
   //generate token
   const token = authUtil.signToken(dbPopulatedUser.user);
 
+  console.log(`Login successful: ${email}`);
+  
   return res
     .status(StatusCodes.OK)
     .setHeader("authorization", `Bearer ${token}`)
@@ -42,8 +46,13 @@ const LoginUser = async (req, res) => {
       message: "Login Successful",
       token: token,
     });
+  } catch (error) {
+    console.error('Error during login:', error);
+    return res.status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR).json({
+      message: error.message || "Internal Server Error",
+    });
 };
-
+};
 module.exports = {
   LoginUser,
 };

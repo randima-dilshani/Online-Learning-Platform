@@ -37,10 +37,15 @@ const UserSchema = new mongoose.Schema(
             required: [true, "Phone number is required!"],
             validate: {
               validator: (value) => {
-                return /^\+?[1-9]\d{1,14}$/.test(value);
+                return /^\d{10}$/.test(value);
               },
-              message: "Invalid phone number!",
+              message: "Invalid phone number! It should be exactly 10 digits.",
             },
+          },
+          NIC: {
+            type: String,
+            //maxlength: [100, "UserName should not exceed 50 characters!"],
+            required: [true, "UserName is required!"],
           },
       },
       {
