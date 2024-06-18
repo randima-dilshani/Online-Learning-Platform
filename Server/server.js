@@ -18,11 +18,13 @@ app.use(express.json());
 const AuthRouter = require("./auth/auth.route");
 const UserRouter = require("./user/user.route");
 const CourseRouter = require("./courses/course.route");
+const EnrollmentRouter = require("./enrollment/enrollment.route");
 
 //defines routes
 app.use(constants.API.PREFIX.concat("/auth"), AuthRouter);
 app.use(constants.API.PREFIX.concat("/user"), UserRouter);
 app.use(constants.API.PREFIX.concat("/course"), CourseRouter);
+app.use(constants.API.PREFIX.concat("/enrollments"), EnrollmentRouter);
 
 //error handler middleware
 app.use(errorHandlerMiddleware);
