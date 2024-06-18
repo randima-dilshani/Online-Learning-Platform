@@ -32,19 +32,16 @@ const LandingPage = () => {
       <div className="relative z-10 w-full lg:w-1/2 flex justify-center items-center px-5 py-12 lg:py-0 mt-20">
         <div className="w-full lg:max-w-lg flex flex-col items-center justify-center gap-5 md:gap-y-10">
           <span className="flex gap-1 py-1 px-3 border rounded-full text-sm md:text-base border-gray-300 text-gray-600">
-            Manage all your tasks in one place!
+          Centralize your learning experience in one platform!
           </span>
           <p className="flex flex-col gap-0 md:gap-4 text-4xl md:text-6xl 2xl:text-7xl font-black text-center text-blue-900 whitespace-nowrap">
-            <span>Task</span>
-            <span> Management</span>
+            <span>Online Learning</span>
+            <span>Platform</span>
           </p>
           <div className="w-full lg:max-w-lg flex flex-col gap-2 md:gap-y-10 text-gray-700 p-8">
             <p className="text-15">
-              Task Manager helps you keep track of all your tasks in one place.
-              With its intuitive interface and powerful features, you can easily
-              manage your daily tasks, set deadlines, and stay organized. Plan,
-              organize, and collaborate on any project with task management that
-              can be customized for every need.
+            Our Online Learning Platform is your one-stop solution for managing all your educational needs in one place. 
+            With its user-friendly interface and robust features, you can easily enroll in courses, track your progress, and achieve your learning goals. 
             </p>
             <div className="cell">
               <div className="circle rotate-in-up-left"></div>
