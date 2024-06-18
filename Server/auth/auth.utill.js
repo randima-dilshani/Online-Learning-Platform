@@ -8,10 +8,10 @@ const comparePassword = async (password, encryptedPassword) => {
 };
 
 const signToken = (user) => {
-  //token expiration time to 7 days
+  // Token expiration time to 7 days
   const maxAge = 24 * 7 * 60 * 60;
 
-  //Create the payload for the token
+  // Create the payload for the token
   const tokenBody = {
     id: user._id,
     email: user.email,

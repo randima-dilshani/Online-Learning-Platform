@@ -19,7 +19,7 @@ const CourseSchema = new mongoose.Schema(
     required: [true, "Course code is required!"],
   },
   courseImage: {
-    type: Object,
+    type: String,
     required: [true, "Image is required"],
   },
   courseDescription: {

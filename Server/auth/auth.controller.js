@@ -7,52 +7,60 @@ const UnauthorizedError = require("../error/error.classes/UnauthorizedError");
 const NotFoundError = require("../error/error.classes/NotFoundError");
 
 const LoginUser = async (req, res) => {
-  try{
-  const { email, password } = req.body;
-  console.log(`Login attempt: ${email}`);
-  //validate email and password
-  if (!email || !password) {
-    throw new BadRequestError("Email and password are required!");
-  }
+  try {
+    const { email, password } = req.body;
+    console.log(`Login attempt: ${email}`);
+    // Validate email and password
+    if (!email || !password) {
+      throw new BadRequestError("Email and password are required!");
+    }
 
-  //check if user exists
-  const isAuthCheck = await authService.findById(email);
+    // Check if user exists
+    const isAuthCheck = await authService.findById(email);
 
-  if (!isAuthCheck) {
-    throw new NotFoundError("Invalid Email!");
-  }
-  //check if password is correct
-  const isPasswordCorrect = await authUtil.comparePassword(
-    password,
-    isAuthCheck.password
-  );
+    if (!isAuthCheck) {
+      throw new NotFoundError("Invalid Email!");
+    }
 
-  if (!isPasswordCorrect) {
-    throw new UnauthorizedError("Invalid Password");
-  }
+    // Check if password is correct
+    const isPasswordCorrect = await authUtil.comparePassword(
+      password,
+      isAuthCheck.password
+    );
 
-  //populate user
-  const dbPopulatedUser = await isAuthCheck.populate("user");
+    if (!isPasswordCorrect) {
+      throw new UnauthorizedError("Invalid Password");
+    }
 
-  //generate token
-  const token = authUtil.signToken(dbPopulatedUser.user);
+    // Populate user
+    const dbPopulatedUser = await isAuthCheck.populate("user");
 
-  console.log(`Login successful: ${email}`);
-  
-  return res
-    .status(StatusCodes.OK)
-    .setHeader("authorization", `Bearer ${token}`)
-    .json({
-      message: "Login Successful",
-      token: token,
-    });
+   
+
+    // Generate token
+    const token = authUtil.signToken(dbPopulatedUser.user);
+
+    let user = {
+      userName: dbPopulatedUser.user.userName,
+      email: dbPopulatedUser.user.email,
+      role: dbPopulatedUser.user.role,
+    };
+
+    return res
+      .status(StatusCodes.OK)
+      .setHeader("authorization", `Bearer ${token}`)
+      .json({
+        message: "Login Successful",
+        token: token,
+        user: user,
+      });
   } catch (error) {
-    console.error('Error during login:', error);
-    return res.status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR).json({
-      message: error.message || "Internal Server Error",
-    });
+    console.error("Error during login:", error);
+    return res
+      .status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({
+        message: error.message || "Internal Server Error",
+      });
+  }
 };
-};
-module.exports = {
-  LoginUser,
-};
+module.exports = { LoginUser };
