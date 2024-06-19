@@ -84,6 +84,7 @@ const GetUserProfile = async (req, res) => {
 // Delete user profile
 const DeleteUserProfile = async (req, res) => {
   const auth = req.auth;
+  
 
   // Get user profile
   const user = await UserService.findById(auth.id);

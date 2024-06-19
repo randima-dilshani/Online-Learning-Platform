@@ -1,9 +1,10 @@
 import { Menu } from "antd";
 import { useState, useEffect } from "react";
 import {
-  HomeOutlined,
+  BookOutlined,
   RollbackOutlined,
   AreaChartOutlined,
+  TeamOutlined,
 } from "@ant-design/icons";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FaTasks, FaUser, FaUsers } from "react-icons/fa";
@@ -26,34 +27,19 @@ const MenuList = () => {
 
   const menuItems = [
     {
-      key: "/dashboard",
-      icon: <HomeOutlined />,
-      label: "Dashboard",
+      key: "/admindashboard",
+      icon: <BookOutlined />,
+      label: "Courses",
     },
     {
-      key: "/taskdetails",
-      icon: <FaTasks />,
-      label: "Tasks",
+      key: "/students",
+      icon: <TeamOutlined />,
+      label: "Students",
     },
     {
-      key: "/completedtasks",
+      key: "/enrollments",
       icon: <MdTaskAlt />,
-      label: "Completed",
-    },
-    {
-      key: "/inprogresstasks",
-      icon: <AreaChartOutlined />,
-      label: "In Progress",
-    },
-    {
-      key: "/pendingtasks",
-      icon: <MdOutlinePendingActions />,
-      label: "To Do",
-    },
-    {
-      key: "/team",
-      icon: <FaUsers />,
-      label: "Team",
+      label: "Enrollements",
     },
     {
       key: "#",

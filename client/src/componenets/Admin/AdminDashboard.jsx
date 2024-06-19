@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { EditOutlined, DeleteOutlined, PlusOutlined, EyeOutlined,SearchOutlined } from "@ant-design/icons";
 import Logo from "../../componenets/Sidebar/Logo";
 import MenuList from "../../componenets/Sidebar/MenuList";
-import CreateCourses from "../../componenets/Courses/CreateCourses";
+import CreateCourses from "../Courses/CreateCourses";
 import EditCourses from "../Courses/EditCourses";
 
 const { Sider, Content } = Layout;

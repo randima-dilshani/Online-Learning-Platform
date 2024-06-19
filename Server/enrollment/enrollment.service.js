@@ -5,7 +5,13 @@ const save = async (enrollment, session) => {
 };
 
 const findAll = async (queryObj) => {
-  return await Enrollment.find(queryObj).sort({ createdAt: -1 });
+ // console.log("queryObj", queryObj);
+  return await Enrollment.find(queryObj)
+  
+    .populate("studentId", "userName email") // Populate studentId with name and email fields
+    .populate("courseId", "courseName courseTitle") // Populate courseId with name and description fields
+    .sort({ createdAt: -1 });
+    
 };
 
 const findById = async (id) => {

@@ -8,8 +8,11 @@ import AdminDashboard from './componenets/Admin/AdminDashboard';
 import CreateCourses from './componenets/Courses/CreateCourses';
 import EditCourses from './componenets/Courses/EditCourses';
 import SpecificCourse from "./componenets/Courses/SpecificCourse";
+import DisplayAllStudents from "./componenets/Student/DisplayAllStudents";
+import DisplayAllEnrollments from "./componenets/Enrollments/DisplayAllEnrollments";
 
 function App() {
+  
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
@@ -21,6 +24,8 @@ function App() {
       <Route path="/createcourses" element={<CreateCourses />} />
       <Route path="/editcourses/:courseId" element={<EditCourses />} />
       <Route path="/specificcourse/:courseId" element={<SpecificCourse />} />
+      <Route path="/students" element={<DisplayAllStudents />} />
+      <Route path="/enrollments" element={<DisplayAllEnrollments />} />
     </Routes>
   );
 }

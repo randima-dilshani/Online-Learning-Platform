@@ -9,17 +9,14 @@ const NotFoundError = require("../error/error.classes/NotFoundError");
 
 // Create a new enrollment
 const CreateEnrollment = async (req, res, next) => {
+  const auth = req.auth;
+  const { courseId } = req.body;
   const session = await startSession();
   try {
     session.startTransaction();
-    const { studentId, courseId } = req.body;
-
-    if (!studentId || !courseId) {
-      throw new BadRequestError("Student ID and Course ID are required");
-    }
 
     const enrollmentData = {
-      studentId,
+      studentId : auth?.id,
       courseId,
     };
 

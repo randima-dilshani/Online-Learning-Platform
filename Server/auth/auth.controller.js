@@ -47,13 +47,18 @@ const LoginUser = async (req, res) => {
     };
 
     return res
-      .status(StatusCodes.OK)
-      .setHeader("authorization", `Bearer ${token}`)
-      .json({
-        message: "Login Successful",
-        token: token,
-        user: user,
-      });
+    .status(StatusCodes.OK)
+    .setHeader("authorization", `Bearer ${token}`)
+    .json({
+      message: "Login Successful",
+      token: token,
+      user: {
+        id: dbPopulatedUser.user._id,
+        userName: dbPopulatedUser.user.userName,
+        email: dbPopulatedUser.user.email,
+        role: dbPopulatedUser.user.role,
+      },
+    });
   } catch (error) {
     console.error("Error during login:", error);
     return res

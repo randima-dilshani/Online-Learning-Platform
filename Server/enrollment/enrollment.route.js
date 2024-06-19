@@ -1,11 +1,14 @@
 const express = require("express");
 const enrollmentController = require("./enrollment.controller");
+const authMiddleware = require("../auth/auth.middleware");
+const constants = require("../utill/constants")
 
 const EnrollmentRouter = express.Router();
 
 // Route for creating an enrollment
 EnrollmentRouter.post(
   "/createEnrollment",
+  authMiddleware.authorize([constants.USER.ROLES.ADMIN, constants.USER.ROLES.USER]),
   enrollmentController.CreateEnrollment
 );
 
