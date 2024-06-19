@@ -9,7 +9,7 @@ const NotFoundError = require("../error/error.classes/NotFoundError");
 const LoginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
-    console.log(`Login attempt: ${email}`);
+    //console.log(`Login attempt: ${email}`);
     // Validate email and password
     if (!email || !password) {
       throw new BadRequestError("Email and password are required!");

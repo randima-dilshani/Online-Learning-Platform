@@ -12,14 +12,15 @@ const CreateEnrollment = async (req, res, next) => {
   const session = await startSession();
   try {
     session.startTransaction();
-    const { studentId, courseId } = req.body;
+    const { courseId } = req.body;
+    const userId = req.user.id; // Assuming req.user contains the authenticated user's ID
 
-    if (!studentId || !courseId) {
-      throw new BadRequestError("Student ID and Course ID are required");
+    if (!userId || !courseId) {
+      throw new BadRequestError("User ID and Course ID are required");
     }
 
     const enrollmentData = {
-      studentId,
+      studentId: userId,
       courseId,
     };
 
@@ -39,6 +40,8 @@ const CreateEnrollment = async (req, res, next) => {
     session.endSession();
   }
 };
+
+
 
 // Get all enrollments
 const GetAllEnrollments = async (req, res, next) => {

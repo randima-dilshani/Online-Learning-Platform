@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 require("express-async-errors");
 
 const databaseConfig = require("./config/database.config");
@@ -10,6 +11,9 @@ const constants = require("./utill/constants");
 require("dotenv").config();
 
 const app = express();
+
+// Serve static files from the 'uploads' directory
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use(cors());
 app.use(express.json());

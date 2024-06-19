@@ -3,6 +3,8 @@ const { startSession } = require("mongoose");
 const Course = require("./course.model");
 const CourseService = require("./course.service");
 const User = require("../user/user.model");
+const path = require("path");
+const multer = require("multer");
 
 // Create a new course
 const CreateCourse = async (req, res) => {
@@ -11,14 +13,20 @@ const CreateCourse = async (req, res) => {
     //start transaction
     session.startTransaction();
     // Extract data from the request body
-    const { courseName, courseTitle , courseCode, courseImage, courseDescription, user } = req.body;
+    const { courseName, courseTitle , courseCode, courseDescription, user } = req.body;
+
+    let imagePath = "";
+    if (req.file) {
+      imagePath = path.join("uploads", req.file.filename);
+    }
+ 
 
     // Construct course data object
     const courseData = {
         courseName:  courseName,
         courseTitle:  courseTitle,
         courseCode: courseCode,
-        courseImage: courseImage,
+        image: imagePath,
         courseDescription: courseDescription,
         user: user,
     };

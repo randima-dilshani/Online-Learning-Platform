@@ -18,9 +18,9 @@ const CourseSchema = new mongoose.Schema(
     maxlength: [20, "Course code should not exceed 20 characters!"],
     required: [true, "Course code is required!"],
   },
-  courseImage: {
+  image: {
     type: String,
-    required: [true, "Image is required"],
+    //required: [true, "Image is required"],
   },
   courseDescription: {
     type: String,
