@@ -52,7 +52,7 @@ const CourseView = () => {
           bordered={false}
           style={{ maxWidth: 800, margin: "0 auto", padding: "20px" }}
         >
-         <Image
+           <Image
   src={`http://localhost:8080/${course.image}`}
   alt={course.courseName}
   style={{ marginBottom: "20px" }}

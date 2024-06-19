@@ -14,8 +14,6 @@ const Dashboard = () => {
     JSON.parse(localStorage.getItem("enrolledCourses")) || []
   );
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user"));
-  const userId = user ? user.id : null; // Get the user's ID from localStorage
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -32,22 +30,18 @@ const Dashboard = () => {
     fetchCourses();
   }, []);
 
-  const handleEnroll = async (courseId) => {
-    const userId = JSON.parse(localStorage.getItem("user")).id;
-    const token = localStorage.getItem("token");
-  
-    try {
-      const response = await axios.post(
-        "http://localhost:8080/api/v1/enrollments/createEnrollment",
-        { courseId, userId },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      console.log("Enrollment created successfully:", response.data);
-      // Handle success as needed
-    } catch (error) {
-      console.error("Error creating enrollment:", error);
-      // Handle error
-    }
+  const handleEnroll = (courseId) => {
+    const updatedEnrolledCourses = [...enrolledCourses, courseId];
+    setEnrolledCourses(updatedEnrolledCourses);
+    localStorage.setItem(
+      "enrolledCourses",
+      JSON.stringify(updatedEnrolledCourses)
+    );
+    navigate(`/courses/${courseId}`);
+  };
+
+  const handleView = (courseId) => {
+    navigate(`/courses/${courseId}`);
   };
 
   return (
@@ -72,6 +66,8 @@ const Dashboard = () => {
                 >
                   {course.image && (
                     <div style={{ height: "200px" }}>
+                      {" "}
+                      {/* Fixed height to maintain consistency */}
                       <img
                         alt="course"
                         src={`http://localhost:8080/${course.image}`}

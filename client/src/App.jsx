@@ -4,7 +4,10 @@ import LandingPage from "./pages/LandingPage";
 import Signup from "./componenets/User/Signup";
 import Dashboard from "./pages/Dashboard";
 import CourseView from './componenets/User/CourseView';
-import AdminDashboard from './componenets/User/admindashboard';
+import AdminDashboard from './componenets/Admin/AdminDashboard';
+import CreateCourses from './componenets/Courses/CreateCourses';
+import EditCourses from './componenets/Courses/EditCourses';
+import SpecificCourse from "./componenets/Courses/SpecificCourse";
 
 function App() {
   return (
@@ -15,6 +18,9 @@ function App() {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/courses/:courseId" element={<CourseView />} />
       <Route path="/admindashboard" element={<AdminDashboard />} />
+      <Route path="/createcourses" element={<CreateCourses />} />
+      <Route path="/editcourses/:courseId" element={<EditCourses />} />
+      <Route path="/specificcourse/:courseId" element={<SpecificCourse />} />
     </Routes>
   );
 }
