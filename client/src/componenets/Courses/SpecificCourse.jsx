@@ -7,9 +7,9 @@ const { Title, Text } = Typography;
 const { Content } = Layout;
 
 const CourseView = () => {
-  const { courseId } = useParams();
-  const [course, setCourse] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { courseId } = useParams(); 
+  const [course, setCourse] = useState(null); 
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const fetchCourse = async () => {
@@ -17,17 +17,18 @@ const CourseView = () => {
         const response = await axios.get(
           `http://localhost:8080/api/v1/course/getCourse/${courseId}`
         );
-        setCourse(response.data);
-        setLoading(false);
+        setCourse(response.data); 
+        setLoading(false); 
       } catch (error) {
         console.error("Error fetching course:", error);
-        setLoading(false);
+        setLoading(false); 
       }
     };
 
     fetchCourse();
   }, [courseId]);
 
+  // Display loading spinner while fetching data
   if (loading) {
     return (
       <Layout style={{ minHeight: "100vh", justifyContent: "center", alignItems: "center" }}>
@@ -36,6 +37,7 @@ const CourseView = () => {
     );
   }
 
+  // Display error message if no course data is found
   if (!course) {
     return (
       <Layout style={{ minHeight: "100vh", justifyContent: "center", alignItems: "center" }}>
@@ -44,6 +46,7 @@ const CourseView = () => {
     );
   }
 
+  // Render course details once data is fetched
   return (
     <Layout style={{ padding: "20px", minHeight: "100vh" }}>
       <Content>
@@ -52,13 +55,13 @@ const CourseView = () => {
           bordered={false}
           style={{ maxWidth: 800, margin: "0 auto", padding: "20px" }}
         >
-           <Image
-  src={`http://localhost:8080/${course.image}`}
-  alt={course.courseName}
-  style={{ marginBottom: "20px" }}
-/>
+          <Image
+            src={`http://localhost:8080/${course.image}`} // Image source URL
+            alt={course.courseName}
+            style={{ marginBottom: "20px", width: "100%" }} 
+          />
           <Title level={4}>Code: {course.courseCode}</Title>
-          <Title level={4}>Title: {course.courseTitle}</Title>
+          <Title level={4}>Course Title: {course.courseTitle}</Title>
           <Text>{course.courseDescription}</Text>
         </Card>
       </Content>

@@ -6,7 +6,6 @@ const Auth = require("../auth/auth.model");
 const UserService = require("./user.service");
 const AuthService = require("../auth/auth.service");
 
-//Error messages
 const BadRequestError = require("../error/error.classes/BadRequestError");
 const NotFoundError = require("../error/error.classes/NotFoundError");
 
@@ -30,14 +29,10 @@ const CreateUser = async (req, res) => {
   // Start mongoose default session to handle transactions
   const session = await startSession();
   try {
-    // Start transaction
     session.startTransaction();
-
-    // Save user and auth
     createdUser = await UserService.save(user, session);
     await AuthService.save(auth, session);
 
-    // Commit transaction
     await session.commitTransaction();
 
     return res.status(StatusCodes.CREATED).json({
@@ -45,11 +40,9 @@ const CreateUser = async (req, res) => {
       user: createdUser,
     });
   } catch (err) {
-    // Abort transaction
     await session.abortTransaction();
     throw err;
   } finally {
-    // End session
     session.endSession();
   }
 };
@@ -96,20 +89,15 @@ const DeleteUserProfile = async (req, res) => {
   const session = await startSession();
 
   try {
-    // Start transaction
+    
     session.startTransaction();
-    // Delete user profile
     await UserService.findByIdAndDelete(auth.id, session);
-    // Delete auth
     await AuthService.findByIdAndDelete(auth.email, session);
-    // Commit transaction
     await session.commitTransaction();
   } catch (err) {
-    // Abort transaction
     await session.abortTransaction();
     throw err;
   } finally {
-    // End session
     session.endSession();
   }
 

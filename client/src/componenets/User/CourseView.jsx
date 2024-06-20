@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { Card, Typography, Image, Spin, Layout } from "antd";
+import { Card, Typography, Image, Spin, Layout, Button } from "antd";
+import { PlayCircleOutlined, FormOutlined } from "@ant-design/icons";
 
 const { Title, Text } = Typography;
 const { Content } = Layout;
@@ -52,14 +53,30 @@ const CourseView = () => {
           bordered={false}
           style={{ maxWidth: 800, margin: "0 auto", padding: "20px" }}
         >
-         <Image
-  src={`http://localhost:8080/${course.image}`}
-  alt={course.courseName}
-  style={{ marginBottom: "20px" }}
-/>
+          <Image
+            src={`http://localhost:8080/${course.image}`}
+            alt={course.courseName}
+            style={{ marginBottom: "20px", width: "800px" }}
+          />
           <Title level={4}>Code: {course.courseCode}</Title>
           <Title level={4}>Title: {course.courseTitle}</Title>
           <Text>{course.courseDescription}</Text>
+          <div style={{ marginTop: "20px", display: "flex", justifyContent: "flex-end" }}>
+  <Button
+    type="primary"
+    icon={<PlayCircleOutlined />}
+    style={{ marginRight: "10px", backgroundColor: "#52c41a", borderColor: "#52c41a" }}
+  >
+    Watch Videos
+  </Button>
+  <Button
+    type="primary"
+    icon={<FormOutlined />}
+    style={{ backgroundColor: "#1890ff", borderColor: "#1890ff" }}
+  >
+    Start Quiz
+  </Button>
+</div>
         </Card>
       </Content>
     </Layout>

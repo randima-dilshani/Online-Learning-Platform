@@ -44,7 +44,6 @@ const UserSchema = new mongoose.Schema(
           },
           NIC: {
             type: String,
-            //maxlength: [100, "UserName should not exceed 50 characters!"],
             required: [true, "UserName is required!"],
           },
       },

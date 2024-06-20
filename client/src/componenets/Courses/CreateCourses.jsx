@@ -13,10 +13,12 @@ const CreateCourseForm = ({ open, setOpen, fetchCourses }) => {
     setOpen(false);
   };
 
+  // Function to handle changes in the file upload
   const handleUploadChange = ({ fileList }) => {
     setFileList(fileList);
   };
 
+  // Function to handle creating a new course
   const handleOk = async () => {
     try {
       const values = await form.validateFields();
@@ -38,7 +40,7 @@ const CreateCourseForm = ({ open, setOpen, fetchCourses }) => {
       form.resetFields();
       setFileList([]);
       setOpen(false);
-      fetchCourses(); // Refresh the courses list
+      fetchCourses(); 
       message.success("Course created successfully");
     } catch (error) {
       console.error("Error creating course:", error);
@@ -49,7 +51,7 @@ const CreateCourseForm = ({ open, setOpen, fetchCourses }) => {
   return (
     <Modal
       title="Create Course"
-      open={open}
+      visible={open} 
       onCancel={handleCancel}
       onOk={handleOk}
       okText="Create"
@@ -93,7 +95,7 @@ const CreateCourseForm = ({ open, setOpen, fetchCourses }) => {
           <Upload
             name="image"
             listType="picture"
-            beforeUpload={() => false} // Prevent automatic upload
+            beforeUpload={() => false} 
             onChange={handleUploadChange}
             fileList={fileList}
           >

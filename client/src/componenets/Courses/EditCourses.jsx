@@ -12,33 +12,34 @@ const EditCourses = ({ open, setOpen, courseId, fetchCourses }) => {
     }
   }, [courseId]);
 
+  // Function to fetch course details
   const fetchCourseDetails = async (id) => {
     try {
       const response = await axios.get(`http://localhost:8080/api/v1/course/getCourse/${id}`);
-      form.setFieldsValue(response.data);
+      form.setFieldsValue(response.data); 
     } catch (error) {
       console.error("Error fetching course details:", error);
     }
   };
 
+  // Function to handle form submission
   const handleOk = async () => {
     try {
       setLoading(true);
-      const values = await form.validateFields();
-      await axios.put(`http://localhost:8080/api/v1/course/updateCourse/${courseId}`, values);
+      const values = await form.validateFields(); 
+      await axios.put(`http://localhost:8080/api/v1/course/updateCourse/${courseId}`, values); // Update course
       setLoading(false);
       setOpen(false);
-      fetchCourses();
-      form.resetFields();
+      fetchCourses(); 
+      form.resetFields(); 
     } catch (error) {
       console.error("Error updating course:", error);
       setLoading(false);
     }
   };
-
   const handleCancel = () => {
-    setOpen(false);
-    form.resetFields();
+    setOpen(false); 
+    form.resetFields(); 
   };
 
   return (

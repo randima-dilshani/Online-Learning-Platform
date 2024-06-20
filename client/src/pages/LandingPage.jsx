@@ -4,15 +4,14 @@ import { Link } from "react-router-dom";
 const LandingPage = () => {
   return (
     <div className="relative w-full min-h-screen flex flex-col lg:flex-row bg-[#f3f4f6]">
-      {/* Background Image */}
       <div
         className="absolute inset-x-0 bottom-0 bg-cover bg-center bg-no-repeat z-0"
         style={{
           backgroundImage:
             "url('https://res.cloudinary.com/nibmsa/image/upload/v1717077569/wave_3_ijefzv.svg')",
-          height: "40%", // Set height to 40% of the parent container
-          width: "100%", // Set width to 100% of the parent container
-          backgroundPosition: "bottom", // Position the background image at the bottom
+          height: "40%", 
+          width: "100%", 
+          backgroundPosition: "bottom", 
         }}
       ></div>
 
@@ -22,9 +21,9 @@ const LandingPage = () => {
         style={{
           backgroundImage:
             "url('https://your-left-side-image-url.com/left-side-image.jpg')",
-          height: "100%", // Set height to 100% of the parent container
-          width: "50%", // Set width to 50% of the parent container
-          backgroundPosition: "left", // Position the background image at the left
+          height: "100%", 
+          width: "50%",
+          backgroundPosition: "left", 
         }}
       ></div>
 

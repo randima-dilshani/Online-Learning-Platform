@@ -10,7 +10,7 @@ const SignUp = () => {
     const [NIC, setNIC] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [errors, setErrors] = useState({}); // State for error messages
+    const [errors, setErrors] = useState({}); 
 
     const resetForm = () => {
         setUsername("");
@@ -19,13 +19,12 @@ const SignUp = () => {
         setNIC("");
         setConfirmPassword("");
         setPassword("");
-        setErrors(""); // Clear any previous error messages
+        setErrors(""); 
       };
 
       const sendData = async (e) => {
         e.preventDefault();
-    
-        // Reset previous error messages
+  
         setErrors("");
     
         if (password !== confirmPassword) {

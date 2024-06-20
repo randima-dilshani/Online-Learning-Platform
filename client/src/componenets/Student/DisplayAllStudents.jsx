@@ -69,10 +69,9 @@ const DisplayAllStudents = () => {
     try {
       const values = await form.validateFields();
       console.log('Edited values:', values);
-      // Send the updated user data to the server here
       setIsModalVisible(false);
       setEditingUser(null);
-      form.resetFields(); // Reset the form after editing
+      form.resetFields(); 
       // After successful edit, refetch the users
       fetchUsers();
     } catch (error) {
@@ -118,18 +117,21 @@ const DisplayAllStudents = () => {
       render: (text, record) => (
         <Space size="middle">
           <Button
-            type="text"
-            icon={<EditOutlined style={{ color: 'blue' }} />}
+            type="primary"
+            style = {{backgroundColor: "#1890ff", borderColor: "#1890ff" }}
+            icon={<EditOutlined />}
             onClick={() => handleEdit(record)}
           />
           <Button
-            type="text"
-            icon={<DeleteOutlined style={{ color: 'red' }} />}
+            type="primary"
+            style = {{backgroundColor: "#f5222d", borderColor: "#f5222d" }}
+            icon={<DeleteOutlined />}
             onClick={() => handleDelete(record)}
           />
         </Space>
       ),
     },
+    
   ];
 
   return (

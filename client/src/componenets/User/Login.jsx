@@ -26,7 +26,8 @@ const Login = () => {
       const response = await axios.post("http://localhost:8080/api/v1/auth/login", loginData);
       if (response.status === 200) {
         localStorage.setItem("token", response.data.token);
-        localStorage.setItem("user", JSON.stringify(response.data.user)); // Store user information including user ID
+        // Store user information including user ID
+        localStorage.setItem("user", JSON.stringify(response.data.user)); 
         alert("Login Successful");
         const userRole = response.data.user.role;
         console.log(`User role: ${userRole}`);
@@ -38,7 +39,6 @@ const Login = () => {
       } else {
         setError("Login failed. Please check your credentials.");
       }
-      console.log("userRole>>>>", userRole);
     } catch (error) {
       console.error("Login error:", error);
       setError("Password or Email is incorrect.");

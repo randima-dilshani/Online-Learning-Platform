@@ -35,7 +35,7 @@ const Dashboard = () => {
       console.error('Token not found');
       return;
     }
-
+  
     // Display confirmation modal
     Modal.confirm({
       title: 'Enroll',
@@ -44,16 +44,14 @@ const Dashboard = () => {
         try {
           const response = await axios.post(
             'http://localhost:8080/api/v1/enrollments/createEnrollment',
-            { courseId },
+            { courseId, status: 'Enroll' },
             { headers: { Authorization: `Bearer ${token}` } }
           );
-
+  
           const { enrollment } = response.data;
-          console.log("enrollment>>>>>", enrollment);
           const updatedEnrolledCourses = [...enrolledCourses, enrollment.courseId];
           setEnrolledCourses(updatedEnrolledCourses);
           localStorage.setItem('enrolledCourses', JSON.stringify(updatedEnrolledCourses));
-          console.log(enrollment.courseId);
           navigate(`/courses/${enrollment.courseId}`);
         } catch (error) {
           console.error('Failed to enroll:', error);
@@ -64,7 +62,7 @@ const Dashboard = () => {
       },
     });
   };
-
+  
   const handleLogout = () => {
     localStorage.removeItem('token');
     navigate('/login');
@@ -145,19 +143,6 @@ const Dashboard = () => {
                     {enrolledCourses.includes(course._id) ? (
                       <>
                         <Button
-                          type="default"
-                          block
-                          style={{
-                            backgroundColor: "#A9A9A9",
-                            borderColor: "#A9A9A9",
-                            color: "#FFFFFF",
-                            width: "100px",
-                          }}
-                          disabled
-                        >
-                          Enrolled
-                        </Button>
-                        <Button
                           type="primary"
                           block
                           onClick={() => navigate(`/courses/${course._id}`)}
@@ -165,10 +150,10 @@ const Dashboard = () => {
                             backgroundColor: "#0000FF",
                             borderColor: "#0000FF",
                             color: "#FFFFFF",
-                            width: "100px",
+                            width: "150px",
                           }}
                         >
-                          View
+                          View Course
                         </Button>
                       </>
                     ) : (
